@@ -1,0 +1,80 @@
+body {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+}
+
+.image-carousel {
+  overflow: hidden;
+  width: 90%;
+}
+.image-carousel * {
+  box-sizing: border-box;
+}
+.carousel {
+  transform-style: preserve-3d;
+}
+.carousel_image {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  margin: auto;
+  padding: 1rem 4rem;
+  z-index: 100;
+  transition: transform 0.5s, opacity 0.5s, z-index 0.5s;
+}
+
+.carousel_image.first,
+.carousel_image.active {
+  opacity: 1;
+  position: relative;
+  z-index: 900;
+}
+
+.carousel_image.prev,
+.carousel_image.next {
+  z-index: 800;
+}
+.carousel_image.prev {
+  transform: translateX(-100%); /* Move 'prev' item to the left */
+}
+.carousel_image.next {
+  transform: translateX(100%); /* Move 'next' item to the right */
+}
+
+.carousel_button_prev,
+.carousel_button_next {
+  position: absolute;
+  top: 50%;
+  width: 3rem;
+  height: 3rem;
+  background-color: #fff;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1001; /* Sit on top of everything */
+  border: 1px solid black;
+}
+.carousel_button_prev {
+  left: 0;
+}
+.carousel_button_next {
+  right: 0;
+}
+.carousel_button_prev::after,
+.carousel_button_next::after {
+  content: " ";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 50%;
+  left: 54%;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+.carousel_button_next::after {
+  left: 47%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
